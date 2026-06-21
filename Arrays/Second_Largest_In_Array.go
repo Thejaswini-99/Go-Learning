@@ -1,16 +1,22 @@
 package Arrays
 
 func SecondLargest(nums []int) int {
-	for i := 0; i < len(nums); i++ {
-		for j := 0; j <= len(nums)-1; j++ {
-			if nums[i] > nums[j] && i > j {
-				x := nums[i]
-				nums[i] = nums[j]
-				nums[j] = x
-			}
+	Largest := nums[0]
+	SecondLargest := -1
+
+	for _, value := range nums {
+		if Largest < value {
+			SecondLargest = Largest
+			Largest = value
+		} else if value < Largest && value > SecondLargest && value != Largest {
+			SecondLargest = value
 		}
 
 	}
-	return nums[1]
+	if SecondLargest == -1 {
+		return -1
+	}
+
+	return SecondLargest
 
 }
